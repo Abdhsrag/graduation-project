@@ -1,0 +1,74 @@
+<!-- <div class="view-container">
+    <h2>Products</h2>
+    <table>
+        <tr>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Color</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let item of allProducts">
+          <td><img src={{item.image}}></td>
+          <td>{{item.title}}</td>
+          <td>$ {{item.price}}</td>
+          <td>{{item.color}}</td>
+          <td>{{item.categories}}</td>
+          <td>{{item.desc}}</td>
+          <td>
+            <a routerLink="/products/update/{{item._id}}"><i class="fa fa-edit icon"></i></a>&nbsp; &nbsp;
+            <a (click)="onDelete(item._id)" style="cursor: pointer;"><i class="fa fa-trash icon"></i></a>
+          </td>
+        </tr>
+
+      </table>
+</div>
+ -->
+
+
+ <div class="view-container">
+  <h2>Products</h2>
+
+  <!-- Display a success or error message after deletion -->
+  <div *ngIf="deleteMsg" class="message">
+    {{ deleteMsg }}
+  </div>
+
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+
+    <!-- Iterate through the list of products and display them -->
+    <tr *ngFor="let item of allProducts">
+      <td>
+        <!-- Display the product image, use a fallback image if the image fails to load -->
+        <img [src]="item.image" alt="Product Image">
+      </td>
+      <td>{{ item.title }}</td>
+      <td>$ {{ item.price }}</td>
+      <td>{{ item.color }}</td>
+      <td>{{ item.categories }}</td>
+      <td>{{ item.desc }}</td>
+      <td>
+        <!-- Edit product link -->
+        <a [routerLink]="['/products/update', item._id]">
+          <i class="fa fa-edit icon"></i>
+        </a>&nbsp;&nbsp;
+
+        <!-- Delete product button -->
+        <a (click)="onDelete(item._id)" style="cursor: pointer;">
+          <i class="fa fa-trash icon"></i>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
